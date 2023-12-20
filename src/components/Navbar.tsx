@@ -20,7 +20,7 @@ const Navbar = () => {
                 </Typography.Title> */}
                 <Menu theme='dark'>
                     <Menu.Item icon={<HomeOutlined />}>
-                        <Link to='/'> Home </Link>
+                        <Link to='/'> Home Page </Link>
                     </Menu.Item>
 
                     <Menu.Item icon={<FundOutlined />}>
