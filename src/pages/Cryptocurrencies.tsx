@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import millify from 'millify'
 import { Link } from 'react-router-dom'
 import { Card, Row, Col, Input } from 'antd'
@@ -9,29 +9,48 @@ type CryptocurrenciesProps = {
     limit?: number
 }
 
-const Cryptocurrencies: FC<CryptocurrenciesProps> = ({ limit = 50 }) => {
+const Cryptocurrencies: FC<CryptocurrenciesProps> = ({ limit = 100 }) => {
     const { data: cryptosList, isFetching } = useGetCryptosQuery({ limit })
-    // const [cryptos, setCryptos] = useState(cryptosList?.data?.coins || [])
+    const [searchTerm, setSearchTerm] = useState('')
+    const [cryptos, setCryptos] = useState([])
 
-    console.log('dawdawdaw', limit)
+    useEffect(() => {
+        const filteredData = cryptosList?.data?.coins?.filter((coin: any) =>
+            coin.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+
+        setCryptos(filteredData || [])
+    }, [cryptosList, searchTerm])
 
     return (
         <>
+            <div className='search-crypto'>
+                <Input
+                    placeholder='Search Cryptocurrency'
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                />
+            </div>
+
+            {isFetching && <p>Loading...</p>}
             <Row
                 gutter={[32, 32]}
                 className='crypto-card-container'
                 style={{ padding: '0px 40px' }}
             >
-                {cryptosList?.data?.coins.map((currency: any) => (
+                {cryptos.map((currency: any) => (
                     <Col
+                        key={currency.id}
                         xs={24}
                         sm={12}
                         lg={6}
                         className='crypto-card'
-                        key={currency.id}
                     >
-                        <Link to={`crypto/${currency.id}`}>
+                        <Link
+                            to={`crypto/${currency.id}`}
+                            key={`link_${currency.id}`}
+                        >
                             <Card
+                                key={`card_${currency.id}`}
                                 title={`${currency.rank}. ${currency.name}`}
                                 extra={
                                     <img

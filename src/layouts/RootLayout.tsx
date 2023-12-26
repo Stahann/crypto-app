@@ -46,19 +46,3 @@ const RootLayout = () => {
 }
 
 export default RootLayout
-
-// <div className='app'>
-//     <div className='navbar'>
-//         <Navbar />
-//     </div>
-//     <div className='main'>
-//         <Layout>
-//             <div className='routes'>
-//                 <Outlet />
-//             </div>
-//         </Layout>
-//     </div>
-//     <div className='footer'>
-
-//     </div>
-// </div>

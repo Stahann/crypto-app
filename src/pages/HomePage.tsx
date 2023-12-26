@@ -9,10 +9,10 @@ import News from './News'
 const { Title } = Typography
 
 const HomePage = () => {
-    const { data, isFetching } = useGetCryptosQuery({ limit: 10 })
-    console.log('data', data?.data)
+    const { data: cryptosList, isFetching } = useGetCryptosQuery({ limit: 10 })
+    console.log('data', cryptosList?.data)
 
-    const globalStats = data?.data?.stats
+    const globalStats = cryptosList?.data?.stats
 
     if (isFetching) {
         return <p>Loading...</p>
