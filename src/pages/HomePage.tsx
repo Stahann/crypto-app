@@ -10,7 +10,6 @@ const { Title } = Typography
 
 const HomePage = () => {
     const { data: cryptosList, isFetching } = useGetCryptosQuery({ limit: 10 })
-    console.log('data', cryptosList?.data)
 
     const globalStats = cryptosList?.data?.stats
 
@@ -84,7 +83,7 @@ const HomePage = () => {
                     <Link to='news'>Show More</Link>
                 </Title>
             </div>
-            <News />
+            <News limit={5} />
         </>
     )
 }
