@@ -13,8 +13,6 @@ const createRequest = (url: string, params?: {}) => ({
     params,
 })
 
-// const createAxiosRequest = (url: string) => axios.get(url, { params: { limit: 15 } })
-
 export const cryptoApi = createApi({
     reducerPath: 'cryptoApi',
     baseQuery: fetchBaseQuery({ baseUrl }),
@@ -26,16 +24,3 @@ export const cryptoApi = createApi({
 })
 
 export const { useGetCryptosQuery } = cryptoApi
-
-// interface ICrypto {
-//     name: string
-//     price: string
-// }
-
-// type Cryptos = Array<ICrypto>
-
-// interface ICryptosResponse {
-//     data: {
-//         coins: Cryptos
-//     }
-// }
