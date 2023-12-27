@@ -22,6 +22,8 @@ const Cryptocurrencies: FC<CryptocurrenciesProps> = ({ limit = 100 }) => {
         setCryptos(filteredData || [])
     }, [cryptosList, searchTerm])
 
+    console.log(cryptos)
+
     return (
         <>
             <div className='search-crypto'>
@@ -39,18 +41,14 @@ const Cryptocurrencies: FC<CryptocurrenciesProps> = ({ limit = 100 }) => {
             >
                 {cryptos.map((currency: any) => (
                     <Col
-                        key={currency.id}
+                        key={currency.uuid}
                         xs={24}
                         sm={12}
                         lg={6}
                         className='crypto-card'
                     >
-                        <Link
-                            to={`crypto/${currency.id}`}
-                            key={`link_${currency.id}`}
-                        >
+                        <Link to={`crypto/${currency.uuid}`}>
                             <Card
-                                key={`card_${currency.id}`}
                                 title={`${currency.rank}. ${currency.name}`}
                                 extra={
                                     <img
