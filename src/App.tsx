@@ -1,17 +1,10 @@
-import { createBrowserRouter, RouterProvider, Link } from  'react-router-dom';
-import { Layout, Typography, Space } from 'antd'
+import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom'
 
-import React from 'react';
-import Navbar from './components/Navbar';
-import './App.css';
-import { router } from './navigation/router';
-
-
+import './App.css'
+import { router } from './navigation/router'
 
 function App() {
-  return (
-    <RouterProvider router={router} />
-  );
+    return <RouterProvider router={router} />
 }
 
-export default App;
+export default App
