@@ -35,8 +35,10 @@ a:hover {
     padding: 20px;
 }
 .nav-container {
+    /* display: block !important; */
     position: fixed;
     left: 0;
+    top: 0;
     /* margin: 10px; */
     height: 100vh;
     margin: 0px;
@@ -135,7 +137,7 @@ a:hover {
 }
 
 .coin-detail-container {
-    margin: 30px;
+    margin: 40px;
 }
 
 .coin-heading-container {
@@ -162,9 +164,10 @@ a:hover {
 
 .stats-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 40px;
+    padding-top: 30px;
 }
 
 .stats-container h2 {
@@ -197,6 +200,20 @@ a:hover {
 
 .stats {
     font-weight: 800;
+}
+
+.other-stats-info {
+    padding: 0px 40px;
+}
+
+.coin-details-statistics {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coin-value-statistics {
+    padding-top: 20px;
 }
 
 .coin-value-statistics-heading p {
@@ -234,8 +251,9 @@ a:hover {
 }
 
 .coin-links {
-    padding: 0px 20px;
+    /* padding: 0px 20px; */
     flex: 0.5;
+    padding-top: 40px;
 }
 
 .coin-link {
@@ -323,6 +341,7 @@ a:hover {
     justify-content: space-between;
     gap: 50px;
     color: #0071bd;
+    padding-top: 40px;
 }
 .chart-title {
     color: #0071bd !important;
@@ -344,6 +363,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
     margin-top: 40px;
     padding: 0px 40px;
 }
