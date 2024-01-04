@@ -47,7 +47,7 @@ const Cryptocurrencies: FC<CryptocurrenciesProps> = ({ limit = 100 }) => {
                         lg={6}
                         className='crypto-card'
                     >
-                        <Link to={`crypto/${currency.uuid}`}>
+                        <Link to={`/cryptocurrencies/${currency.uuid}`}>
                             <Card
                                 title={`${currency.rank}. ${currency.name}`}
                                 extra={
