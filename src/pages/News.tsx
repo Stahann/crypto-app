@@ -4,31 +4,92 @@ import moment, { Moment } from 'moment'
 
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi'
 
+const DUMMY_NEWS = [
+    {
+        label: 'Coindesk',
+        value: '/coindesk',
+    },
+    {
+        label: 'Cointelegraph',
+        value: '/cointelegraph',
+    },
+    {
+        label: 'Bitcoinist',
+        value: '/bitcoinist',
+    },
+    {
+        label: 'Decrypt',
+        value: '/decrypt',
+    },
+    {
+        label: 'BSC',
+        value: '/bsc',
+    },
+    {
+        label: 'The Guardian',
+        value: '/theguardian',
+    },
+]
+
+type CryptosProps = {
+    limit?: number
+}
+
 type CryptoNewsProps = {
-    limit?: number | undefined
+    limit?: number
 }
 
 const { Text, Title } = Typography
 const { Option } = Select
 
 const News: FC<CryptoNewsProps> = ({ limit }) => {
-    const { data: cryptoNews } = useGetCryptoNewsQuery({ limit })
+    const [newsUrl, setNewsUrl] = useState('/coindesk')
 
-    const [isLoading, setIsLoading] = useState(true)
+    const { data: cryptoNews, refetch } = useGetCryptoNewsQuery({
+        limit,
+        url: newsUrl,
+    })
+
+    const handleSelectChange = (value: string) => {
+        console.log('value', value)
+
+        setNewsUrl(value)
+    }
 
     useEffect(() => {
-        if (cryptoNews) {
-            setIsLoading(false)
-        }
-    }, [cryptoNews])
+        refetch()
+    }, [newsUrl])
 
     return (
         <>
-            {isLoading && 'Loading...'}
+            {/* {isLoading && 'Loading...'} */}
             <Row
                 gutter={[24, 24]}
                 style={{ paddingLeft: '40px', paddingRight: '40px' }}
             >
+                <Col span={24}>
+                    <Select
+                        showSearch
+                        className='select-news'
+                        placeholder='Select a Crypto'
+                        optionFilterProp='children'
+                        onChange={handleSelectChange}
+                        defaultValue={'/coindesk'}
+                        filterOption={(input, option) =>
+                            option?.children
+                                ? (option.children as any)
+                                      .toLowerCase()
+                                      .indexOf(input.toLowerCase()) >= 0
+                                : false
+                        }
+                    >
+                        {DUMMY_NEWS.map((news, index: number) => (
+                            <Option value={news.value} key={index}>
+                                {news.label}
+                            </Option>
+                        ))}
+                    </Select>
+                </Col>
                 {cryptoNews?.data.map((news: any) => (
                     <Col xs={24} sm={12} lg={8} key={news.createdAt}>
                         <Card hoverable className='news-card'>
