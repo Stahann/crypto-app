@@ -15,7 +15,7 @@ export const router = createBrowserRouter([
             { index: true, element: <HomePage /> },
             { path: 'exchanges', element: <Exchanges /> },
             { path: 'cryptocurrencies', element: <Cryptocurrencies /> },
-            { path: 'crypto/:coinId', element: <CryptoDetails /> },
+            { path: 'cryptocurrencies/:coinId', element: <CryptoDetails /> },
             { path: 'news', element: <News /> },
         ],
     },
