@@ -1,4 +1,4 @@
-import { Layout, Menu, Typography, Space } from 'antd'
+import { Layout, Menu, Typography, Space, Grid } from 'antd'
 import Sider from 'antd/es/layout/Sider'
 import { Content, Footer } from 'antd/es/layout/layout'
 import { Outlet, Link } from 'react-router-dom'
@@ -6,13 +6,20 @@ import { Outlet, Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import '../App.css'
 
+const { useBreakpoint } = Grid
+
 const RootLayout = () => {
+    const screens = useBreakpoint()
+
     return (
         <Layout className='app'>
             <div className='main'>
                 <Content>
                     <Layout>
-                        <Sider width={200}>
+                        {screens.xs && <Navbar />}
+                        <Sider
+                            style={{ display: screens.xs ? 'none' : 'unset' }}
+                        >
                             <Navbar />
                         </Sider>
                         <Content style={{ minHeight: 280 }}>
